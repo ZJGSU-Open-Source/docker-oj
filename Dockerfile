@@ -1,7 +1,11 @@
 #
 # GoOnlineJudge Dockerfile
 #
+# Github
 # https://github.com/JinweiClarkChao/dockerfile-oj
+#
+# Docker Hub
+# https://registry.hub.docker.com/u/clarkzjw/go-onlinejudge/
 #
 
 # Pull base image.
@@ -25,7 +29,7 @@ ADD root/.scripts /root/.scripts
 # Install Go
 RUN \
   mkdir -p /goroot && \
-  curl https://storage.googleapis.com/golang/go1.4.src.tar.gz | tar xvzf - -C /goroot --strip-components=1
+  wget https://storage.googleapis.com/golang/go1.4.src.tar.gz | tar xvzf - -C /goroot --strip-components=1
 
 # Install MongoDB.
 RUN \
