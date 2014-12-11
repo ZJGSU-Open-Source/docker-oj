@@ -8,15 +8,13 @@
 FROM ubuntu:14.04
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
 
-# Install.
+# Install Ubuntu.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
-  apt-get -y upgrade && \
   apt-get install -y build-essential && \
-  apt-get install -y software-properties-common && \
-  apt-get install -y byobu curl git htop man unzip vim wget flex && \
-  mkdir /home/acm/go
+  apt-get install -y git man unzip vim wget flex && \
+  mkdir -p /home/acm/go
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
@@ -49,22 +47,25 @@ RUN \
 
 RUN go get gopkg.in/mgo.v2
 
-RUN git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge
-RUN git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer
-RUN git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
+RUN \
+  git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
+  git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
+  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
 
 # Compile OJ
-RUN cd $GOPATH/src/GoOnlineJudge
-RUN git checkout master
-RUN go build
-RUN cd ../RunServer
-RUN ./make.sh
+RUN \
+  cd $GOPATH/src/GoOnlineJudge && \
+  git checkout master && \
+  go build && \
+  cd ../RunServer && \
+  ./make.sh
 
-RUN echo
-RUN echo ----------
-RUN echo installed.
-RUN echo ----------
-RUN echo
+RUN \
+  echo && \
+  echo ---------- && \
+  echo installed. && \
+  echo ---------- && \
+  echo
 
 # Define working directory.
 WORKDIR $GOPATH/src
