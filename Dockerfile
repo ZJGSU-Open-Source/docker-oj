@@ -17,8 +17,8 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get install -y build-essential && \
-  apt-get install -y git man unzip vim wget flex && \
-  mkdir -p /home/acm/go
+  apt-get install -y git vim wget flex && \
+  mkdir -p /home/acm/go && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
