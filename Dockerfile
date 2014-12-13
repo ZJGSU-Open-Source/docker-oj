@@ -47,16 +47,15 @@ ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Get OJ Source Code
 RUN \
-mkdir -p $GOPATH/src/ProblemData && \
-mkdir -p $GOPATH/src/run
-
-RUN go get gopkg.in/mgo.v2
+  mkdir -p $GOPATH/src/ProblemData && \
+  mkdir -p $GOPATH/src/run
 
 RUN \
   git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
   git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
   git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
-
+  git clone https://gopkg.in/mgo.v2 $GOPATH/src/gopkg.in/mgo.v2
+  
 # Compile OJ
 RUN \
   cd $GOPATH/src/GoOnlineJudge && \
