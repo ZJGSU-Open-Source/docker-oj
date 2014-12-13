@@ -57,12 +57,11 @@ RUN \
   git clone https://gopkg.in/mgo.v2 $GOPATH/src/gopkg.in/mgo.v2
   
 # Compile OJ
-RUN \
-  cd $GOPATH/src/GoOnlineJudge && \
-  git checkout master && \
-  go build && \
-  cd ../RunServer && \
-  ./make.sh
+RUN cd $GOPATH/src/GoOnlineJudge
+RUN git checkout master
+RUN go build
+RUN cd ../RunServer
+RUN ./make.sh
 
 RUN \
   echo && \
