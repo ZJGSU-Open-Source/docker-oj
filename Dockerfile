@@ -27,11 +27,10 @@ ADD root/.gitconfig /root/.gitconfig
 ADD root/.scripts /root/.scripts
 
 # Install Go
-RUN \
-  mkdir -p /goroot && \
-  wget https://storage.googleapis.com/golang/go1.4.src.tar.gz && \
-  tar xvzf go1.4.src.tar.gz && \
-  cp -r go1.4.src/* /goroot/
+RUN mkdir -p /goroot
+RUN wget https://storage.googleapis.com/golang/go1.4.src.tar.gz
+RUN tar xvzf go1.4.src.tar.gz
+RUN cp -r go1.4.src/* /goroot/
 
 # Install MongoDB.
 RUN \
