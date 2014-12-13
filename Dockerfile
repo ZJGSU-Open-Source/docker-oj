@@ -38,7 +38,7 @@ RUN cp -r go/* /goroot/
 # Set environment variables.
 ENV GOROOT /goroot
 ENV GOPATH /home/acm/go
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+ENV PATH=$PATH:$GOROOT/bin
 
 # Install MongoDB.
 RUN \
