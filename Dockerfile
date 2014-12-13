@@ -58,7 +58,6 @@ RUN \
   
 # Compile OJ
 RUN cd $GOPATH/src/GoOnlineJudge
-RUN git checkout master
 RUN go build
 RUN cd ../RunServer
 RUN ./make.sh
