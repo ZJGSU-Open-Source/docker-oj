@@ -47,8 +47,8 @@ ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Get OJ Source Code
 RUN \
-mkdir $GOPATH/src/ProblemData && \
-mkdir $GOPATH/src/run
+mkdir -p $GOPATH/src/ProblemData && \
+mkdir -p $GOPATH/src/run
 
 RUN go get gopkg.in/mgo.v2
 
