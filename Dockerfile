@@ -32,12 +32,12 @@ ADD root/.scripts /root/.scripts
 #  wget https://storage.googleapis.com/golang/go1.4.src.tar.gz | tar xvzf - -C /goroot --strip-components=1
 
 # Install MongoDB.
-RUN \
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
-  apt-get update && \
-  apt-get install -y mongodb-org && \
-  rm -rf /var/lib/apt/lists/*
+# RUN \
+#  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+#  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
+#  apt-get update && \
+#  apt-get install -y mongodb-org && \
+#  rm -rf /var/lib/apt/lists/*
 
 # Set environment variables.
 # ENV GOROOT /goroot
@@ -45,16 +45,16 @@ RUN \
 # ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Get OJ Source Code
-RUN \
-  mkdir $GOPATH/src/ProblemData && \
-  mkdir $GOPATH/src/run
+# RUN \
+#  mkdir $GOPATH/src/ProblemData && \
+#  mkdir $GOPATH/src/run
 
 # RUN go get gopkg.in/mgo.v2
 
-RUN \
-  git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
-  git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
-  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
+# RUN \
+#  git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
+#  git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
+#  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
 
 # Compile OJ
 # RUN \
