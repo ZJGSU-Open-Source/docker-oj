@@ -18,3 +18,13 @@ This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJ
 ### Usage
 
     docker run -it --rm clarkzjw/docker-oj
+
+### Known issues
+
++ [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge) does not support x64 systems yet. [Issue 4](https://github.com/ZJGSU-Open-Source/RunServer/issues/4).
+
+Therefore OJ in container actually **cannot** work yet. 
+
++ You have to specify the port maps when starting a container. GoOnlineJudge runs at 8080 port.
+
++ [MongoDB](http://www.mongodb.org/) is already installed. But you have to run it manually in the container. The scripts can be found at [Gist](https://gist.github.com/JinweiClarkChao/476a18024135393889ae)
