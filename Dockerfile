@@ -30,7 +30,7 @@ ADD root/.scripts /root/.scripts
 RUN mkdir -p /goroot
 RUN wget https://storage.googleapis.com/golang/go1.4.src.tar.gz
 RUN tar xvzf go1.4.src.tar.gz
-RUN cp -r go1.4.src/* /goroot/
+RUN cp -r go/* /goroot/
 
 # Install MongoDB.
 RUN \
@@ -50,20 +50,20 @@ RUN \
 mkdir $GOPATH/src/ProblemData && \
 mkdir $GOPATH/src/run
 
-# RUN go get gopkg.in/mgo.v2
+RUN go get gopkg.in/mgo.v2
 
-# RUN \
-#  git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
-#  git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
-#  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
+RUN \
+  git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
+  git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
+  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
 
 # Compile OJ
-# RUN \
-#  cd $GOPATH/src/GoOnlineJudge && \
-#  git checkout master && \
-#  go build && \
-#  cd ../RunServer && \
-#  ./make.sh
+RUN \
+  cd $GOPATH/src/GoOnlineJudge && \
+  git checkout master && \
+  go build && \
+  cd ../RunServer && \
+  ./make.sh
 
 RUN \
   echo && \
@@ -73,7 +73,7 @@ RUN \
   echo
 
 # Define working directory.
-# WORKDIR $GOPATH/src
+WORKDIR $GOPATH/src
 
 # Define default command.
 CMD ["bash"]
