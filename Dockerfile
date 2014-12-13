@@ -18,7 +18,6 @@ RUN \
   apt-get update && \
   apt-get install -y build-essential && \
   apt-get install -y git vim wget flex && \
-  mkdir -p /home/acm/go && \
   mkdir -p /home/acm/go/src && \
   mkdir -p /home/acm/go/pkg && \
   mkdir -p /home/acm/go/bin && \
@@ -47,6 +46,9 @@ RUN \
   apt-get update && \
   apt-get install -y mongodb-org && \
   rm -rf /var/lib/apt/lists/*
+
+# Set MongoDB dbpath
+RUN mkdir -p /home/acm/Data
 
 # Get OJ Source Code
 RUN \
