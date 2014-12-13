@@ -21,9 +21,7 @@ This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJ
 
 ### Known issues
 
-+ [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge) does not support x64 systems yet. [Issue 4](https://github.com/ZJGSU-Open-Source/RunServer/issues/4).
-
-Therefore OJ in container actually **cannot** work yet. 
++ [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge) does not support x64 systems yet. Track the [issue](https://github.com/ZJGSU-Open-Source/RunServer/issues/4).Therefore OJ in container actually **cannot** work yet. 
 
 + You have to specify the port maps when starting a container. GoOnlineJudge runs at 8080 port.
 
