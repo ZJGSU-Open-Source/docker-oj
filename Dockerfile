@@ -31,11 +31,9 @@ ADD root/.scripts /root/.scripts
 
 # Install Go
 RUN mkdir -p /goroot
-RUN wget https://storage.googleapis.com/golang/go1.4.src.tar.gz
-RUN tar xvzf go1.4.src.tar.gz
+RUN wget https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz
+RUN tar xvzf go1.4.linux-amd64.tar.gz
 RUN cp -r go/* /goroot/
-RUN cd /goroot/src
-RUN ./all.bash
 
 # Set environment variables.
 ENV GOROOT /goroot
@@ -65,7 +63,7 @@ RUN \
 RUN cd $GOPATH/src/GoOnlineJudge
 RUN go build
 RUN cd ../RunServer
-RUN ./make.sh
+RUN bash < ./make.sh
 
 RUN \
   echo && \
