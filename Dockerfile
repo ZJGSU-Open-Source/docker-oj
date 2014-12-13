@@ -56,7 +56,7 @@ RUN \
 RUN \
   git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
   git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
-  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
+  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb && \
   git clone https://gopkg.in/mgo.v2 $GOPATH/src/gopkg.in/mgo.v2
   
 # Define working directory.
