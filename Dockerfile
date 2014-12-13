@@ -19,6 +19,9 @@ RUN \
   apt-get install -y build-essential && \
   apt-get install -y git vim wget flex && \
   mkdir -p /home/acm/go && \
+  mkdir -p /home/acm/go/src && \
+  mkdir -p /home/acm/go/pkg && \
+  mkdir -p /home/acm/go/bin && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
@@ -31,6 +34,13 @@ RUN mkdir -p /goroot
 RUN wget https://storage.googleapis.com/golang/go1.4.src.tar.gz
 RUN tar xvzf go1.4.src.tar.gz
 RUN cp -r go/* /goroot/
+RUN cd /goroot/src
+RUN ./all.bash
+
+# Set environment variables.
+ENV GOROOT /goroot
+ENV GOPATH /home/acm/go
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
 RUN \
@@ -39,11 +49,6 @@ RUN \
   apt-get update && \
   apt-get install -y mongodb-org && \
   rm -rf /var/lib/apt/lists/*
-
-# Set environment variables.
-ENV GOROOT /goroot
-ENV GOPATH /home/acm/go
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Get OJ Source Code
 RUN \
