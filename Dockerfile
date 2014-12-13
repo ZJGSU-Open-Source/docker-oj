@@ -38,7 +38,7 @@ RUN cp -r go/* /goroot/
 # Set environment variables.
 ENV GOROOT /goroot
 ENV GOPATH /home/acm/go
-ENV PATH=$PATH:$GOROOT/bin
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
 RUN \
@@ -59,19 +59,6 @@ RUN \
   git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
   git clone https://gopkg.in/mgo.v2 $GOPATH/src/gopkg.in/mgo.v2
   
-# Compile OJ
-RUN cd $GOPATH/src/GoOnlineJudge
-RUN go build
-RUN cd ../RunServer
-RUN bash < ./make.sh
-
-RUN \
-  echo && \
-  echo ---------- && \
-  echo installed. && \
-  echo ---------- && \
-  echo
-
 # Define working directory.
 WORKDIR $GOPATH/src
 
