@@ -10,8 +10,6 @@
 
 # Pull base image.
 FROM ubuntu:14.04
-FROM golang:1.4
-
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
 
 # Install Ubuntu.
@@ -26,8 +24,17 @@ ADD root/.bashrc /root/.bashrc
 ADD root/.gitconfig /root/.gitconfig
 ADD root/.scripts /root/.scripts
 
+# Install Golang.
+RUN mkdir -p /goroot
+RUN wget https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz
+RUN tar xvzf go1.4.linux-amd64.tar.gz
+RUN cp -r go/* /goroot/
+RUN mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
+
 # Set environment variables for Golang.
+ENV GOROOT /goroot
 ENV GOPATH /home/acm/go
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
 RUN \
@@ -40,7 +47,6 @@ RUN \
 
 # Get OJ Source Code
 RUN \
-  mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin && \
   mkdir -p $GOPATH/src/ProblemData && \
   mkdir -p $GOPATH/src/run
 
@@ -49,7 +55,7 @@ RUN \
   git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
   git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb && \
   git clone https://gopkg.in/mgo.v2 $GOPATH/src/gopkg.in/mgo.v2
-
+  
 # Define working directory.
 WORKDIR $GOPATH/src
 
