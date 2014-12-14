@@ -10,7 +10,7 @@
 
 # Pull base image.
 FROM ubuntu:14.04
-FROM mongodb
+FROM dockerfile/mongodb
 FROM golang
 
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
