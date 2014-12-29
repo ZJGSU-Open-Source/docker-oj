@@ -7,6 +7,9 @@
 # Docker Hub
 # https://registry.hub.docker.com/u/clarkzjw/docker-oj/
 #
+# TODO:
+# Separate MongoDB and GoOnlineJudge in standalone containers.
+# fig.yml
 
 # Pull base image.
 FROM ubuntu:14.04

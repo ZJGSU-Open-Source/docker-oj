@@ -1,0 +1,6 @@
+web:
+	image: clarkzjw/docker-oj
+	command:
+	ports:
+	volumes:
+	links:
