@@ -1,6 +1,8 @@
 web:
-	image: clarkzjw/docker-oj
-	command:
+	ìmages: clarkzjw/dockerfile-oj
 	ports:
-	volumes:
+	 - "80:8080"
 	links:
+	 - mongo
+mongo:
+	image: mongo
