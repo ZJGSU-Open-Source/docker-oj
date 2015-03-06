@@ -7,9 +7,6 @@
 # Docker Hub
 # https://registry.hub.docker.com/u/clarkzjw/docker-oj/
 #
-# TODO:
-# Separate MongoDB and GoOnlineJudge in standalone containers.
-# fig.yml
 
 # Pull base image.
 FROM ubuntu:14.04
@@ -40,24 +37,26 @@ ENV GOPATH /home/acm/go
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
-#RUN \
-#  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-#  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
-#  apt-get update && \
-#  apt-get install -y mongodb-org && \
-#  mkdir -p /home/acm/Data && \
-#  rm -rf /var/lib/apt/lists/*
+RUN \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
+  apt-get update && \
+  apt-get install -y mongodb-org && \
+  mkdir -p /home/acm/Data && \
+  rm -rf /var/lib/apt/lists/*
 
 # Get OJ Source Code
 RUN \
   mkdir -p $GOPATH/src/ProblemData && \
-  mkdir -p $GOPATH/src/run
+  mkdir -p $GOPATH/src/run && \
+  mkdir -p $GOPATJ/src/log
 
 RUN \
   git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
   git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
+  git clone https://github.com/ZJGSU-Open-Source/vjudger.git $GOPATH/src/vjudger && \
   git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb && \
-  git clone https://gopkg.in/mgo.v2 $GOPATH/src/gopkg.in/mgo.v2
+  go get github.com/djimenez/iconv-go
   
 # Define working directory.
 WORKDIR $GOPATH/src
