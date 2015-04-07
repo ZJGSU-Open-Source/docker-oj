@@ -9,7 +9,7 @@
 #
 
 # Pull base image.
-FROM registry.hub.docker.com/_/ubuntu/:14.04
+FROM ubuntu:14.04
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
 
 # Install Ubuntu.
