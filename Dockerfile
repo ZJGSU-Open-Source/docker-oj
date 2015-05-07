@@ -39,15 +39,20 @@ ENV GOPATH /home/acm/go
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
-RUN \
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
-  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
-  apt-get update && \
-  apt-get install -y mongodb-org && \
-  mkdir -p /home/acm/Data && \
-  rm -rf /var/lib/apt/lists/* && \
-  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
+#RUN \
+#  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+#  echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
+#  apt-get update && \
+#  apt-get install -y mongodb-org && \
+#  mkdir -p /home/acm/Data && \
+#  rm -rf /var/lib/apt/lists/* && \
+#  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
 
+RUN \
+  apt-get install -y mongodb && \
+  mkdir -p /home/acm/Data && \
+  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
+  
 # Get OJ Source Code
 RUN \
   mkdir -p $GOPATH/src/ProblemData && \
