@@ -68,12 +68,7 @@ RUN \
   cd $GOPATH/src/GoOnlineJudge && \
   go build && \
   cd $GOPATH/src/RunServer && \
-  ./make.sh && \
-  cd $GOPATH/src/GoOnlineJudge
-
-RUN \
-  cd $GOPATH/src/GoOnlineJudge && \
-  ./GoOnlineJudge &
+  ./make.sh
 
 # Define working directory.
 WORKDIR $GOPATH/src
@@ -81,6 +76,7 @@ WORKDIR $GOPATH/src
 # Expose ports
 EXPOSE 8080
 EXPOSE 8000
+EXPOSE 80
 
 # Define default command.
-CMD ["bash"]
+CMD ["$GOPATH/src/GoOnlineJudge/GoOnlineJudge"]
