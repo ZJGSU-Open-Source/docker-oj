@@ -29,7 +29,7 @@ ADD root/.scripts /root/.scripts
 RUN \
   mkdir -p /goroot && \
   wget https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz && \
-  tar xvzf go1.4.2.linux-amd64.tar.gz && \
+  tar xzf go1.4.2.linux-amd64.tar.gz && \
   cp -r go/* /goroot/ && \
   mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
 
@@ -74,7 +74,7 @@ RUN \
 EXPOSE 80
 
 # Define working directory.
-WORKDIR $GOPATH/src
+WORKDIR $GOPATH/src/GoOnlineJudge
 
 # Define default command.
-CMD ["go", "run", "$GOPATH/src/GoOnlineJudge/main.go"]
+CMD ["go", "run", "main.go"]
