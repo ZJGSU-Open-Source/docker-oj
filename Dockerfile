@@ -69,8 +69,10 @@ RUN \
   go build && \
   cd $GOPATH/src/RunServer && \
   ./make.sh && \
+  cd $GOPATH/src/GoOnlineJudge
+
+RUN \
   cd $GOPATH/src/GoOnlineJudge && \
-  ./RunServer & && \
   ./GoOnlineJudge &
 
 # Define working directory.
