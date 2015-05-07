@@ -52,9 +52,7 @@ RUN \
 RUN \
   mkdir -p $GOPATH/src/ProblemData && \
   mkdir -p $GOPATH/src/run && \
-  mkdir -p $GOPATJ/src/log
-
-RUN \
+  mkdir -p $GOPATJ/src/log && \
   go get gopkg.in/mgo.v2 && \
   go get github.com/djimenez/iconv-go && \
   git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
@@ -65,9 +63,10 @@ RUN \
 # Build OJ
 RUN \
   cd $GOPATH/src/restweb && \
+  cd restweb && \
   go install && \
-  cd $GOPATH/src/GoOnlineJudge && \
-  go build && \
+  cd $GOPATH/src && \
+  restweb build GoOnlineJudge && \
   cd $GOPATH/src/RunServer && \
   ./make.sh
 
@@ -75,7 +74,7 @@ RUN \
 EXPOSE 8080
 
 # Define working directory.
-WORKDIR $GOPATH/src/GoOnlineJudge
+WORKDIR $GOPATH/src
 
 # Define default command.
-CMD ["go", "run", "main.go"]
+CMD ["restweb", "run", "GoOnlineJudge"]
