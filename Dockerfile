@@ -46,7 +46,7 @@ RUN \
   apt-get install -y mongodb-org && \
   mkdir -p /home/acm/Data && \
   rm -rf /var/lib/apt/lists/* && \
-  mongod -port 8090 --dbpath /home/acm/Data
+  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
 
 # Get OJ Source Code
 RUN \
