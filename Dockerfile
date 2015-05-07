@@ -71,13 +71,10 @@ RUN \
   ./make.sh
 
 # Expose ports
-EXPOSE 8080
-EXPOSE 8000
 EXPOSE 80
 
 # Define working directory.
 WORKDIR $GOPATH/src
 
 # Define default command.
-# CMD ["$GOPATH/src/GoOnlineJudge/GoOnlineJudge"]
-CMD ["go run", "$GOPATH/src/GoOnlineJudge/main.go"]
+CMD ["go", "run", "$GOPATH/src/GoOnlineJudge/main.go"]
