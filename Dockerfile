@@ -71,7 +71,7 @@ RUN \
   ./make.sh
 
 # Expose ports
-EXPOSE 80
+EXPOSE 8080
 
 # Define working directory.
 WORKDIR $GOPATH/src/GoOnlineJudge
