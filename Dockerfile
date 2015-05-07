@@ -27,7 +27,7 @@ ADD root/.scripts /root/.scripts
 
 # Install Golang.
 RUN \
-  mkdir -p /goroot
+  mkdir -p /goroot && \
   wget https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz && \
   tar xvzf go1.4.2.linux-amd64.tar.gz && \
   cp -r go/* /goroot/ && \
