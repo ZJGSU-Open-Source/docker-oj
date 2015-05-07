@@ -16,25 +16,28 @@ MAINTAINER clarkzjw <clarkzjw@gmail.com>
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
+  apt-get -y upgrade && \
   apt-get install -y build-essential git vim wget flex && \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/.scripts /root/.scripts
+ADD \
+  root/.bashrc /root/.bashrc && \
+  root/.gitconfig /root/.gitconfig && \
+  root/.scripts /root/.scripts
 
 # Install Golang.
-RUN mkdir -p /goroot
-RUN wget https://storage.googleapis.com/golang/go1.4.linux-amd64.tar.gz
-RUN tar xvzf go1.4.linux-amd64.tar.gz
-RUN cp -r go/* /goroot/
-RUN mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
+RUN \
+  mkdir -p /goroot && \
+  wget https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz && \
+  tar -C /goroot -xzf go1.4.2.linux-amd64.tar.gz && \
+  mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
 
 # Set environment variables for Golang.
-ENV GOROOT /goroot
-ENV GOPATH /home/acm/go
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+ENV \
+  GOROOT /goroot && \
+  GOPATH /home/acm/go && \
+  PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
 RUN \
@@ -52,12 +55,25 @@ RUN \
   mkdir -p $GOPATJ/src/log
 
 RUN \
+  go get gopkg.in/mgo.v2 && \
+  go get github.com/djimenez/iconv-go && \
   git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
   git clone https://github.com/ZJGSU-Open-Source/RunServer.git $GOPATH/src/RunServer && \
   git clone https://github.com/ZJGSU-Open-Source/vjudger.git $GOPATH/src/vjudger && \
-  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb && \
-  go get github.com/djimenez/iconv-go
-  
+  git clone https://github.com/sakeven/restweb.git $GOPATH/src/restweb
+
+# Build OJ
+RUN \
+  cd $GOPATH/src/restweb && \
+  go install && \
+  cd $GOPATH/src/GoOnlineJudge && \
+  go build && \
+  cd $GOPATH/src/RunServer && \
+  ./make.sh && \
+  cd $GOPATH/src/GoOnlineJudge && \
+  ./RunServer & && \
+  ./GoOnlineJudge &
+
 # Define working directory.
 WORKDIR $GOPATH/src
 
