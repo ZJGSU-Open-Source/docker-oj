@@ -21,10 +21,9 @@ RUN \
   rm -rf /var/lib/apt/lists/*
 
 # Add files.
-ADD \
-  root/.bashrc /root/.bashrc && \
-  root/.gitconfig /root/.gitconfig && \
-  root/.scripts /root/.scripts
+ADD root/.bashrc /root/.bashrc
+ADD root/.gitconfig /root/.gitconfig
+ADD root/.scripts /root/.scripts
 
 # Install Golang.
 RUN \
@@ -34,10 +33,9 @@ RUN \
   mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
 
 # Set environment variables for Golang.
-ENV \
-  GOROOT /goroot && \
-  GOPATH /home/acm/go && \
-  PATH $GOROOT/bin:$GOPATH/bin:$PATH
+ENV GOROOT /goroot
+ENV GOPATH /home/acm/go
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install MongoDB.
 RUN \
