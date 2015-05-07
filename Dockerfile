@@ -17,8 +17,10 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential git vim wget flex && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get install -y build-essential git vim wget flex mongodb && \
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir -p /home/acm/Data && \
+  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
 
 # Add files.
 ADD root/.bashrc /root/.bashrc
@@ -48,11 +50,6 @@ ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 #  rm -rf /var/lib/apt/lists/* && \
 #  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
 
-RUN \
-  apt-get install -y mongodb && \
-  mkdir -p /home/acm/Data && \
-  mongod --fork --logpath /home/acm/Data/mongo.log -port 8090 --dbpath /home/acm/Data
-  
 # Get OJ Source Code
 RUN \
   mkdir -p $GOPATH/src/ProblemData && \
