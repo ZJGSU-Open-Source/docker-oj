@@ -45,7 +45,8 @@ RUN \
   apt-get update && \
   apt-get install -y mongodb-org && \
   mkdir -p /home/acm/Data && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  mongod -port 8090 --dbpath /home/acm/Data
 
 # Get OJ Source Code
 RUN \
