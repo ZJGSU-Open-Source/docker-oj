@@ -27,9 +27,10 @@ ADD root/.scripts /root/.scripts
 
 # Install Golang.
 RUN \
-  mkdir -p /goroot && \
+  mkdir -p /goroot
   wget https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz && \
-  tar -C /goroot -xzf go1.4.2.linux-amd64.tar.gz && \
+  tar xvzf go1.4.2.linux-amd64.tar.gz && \
+  cp -r go/* /goroot/ && \
   mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
 
 # Set environment variables for Golang.
