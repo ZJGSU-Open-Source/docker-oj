@@ -12,12 +12,12 @@
 FROM ubuntu:14.04
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
 
-# Install Ubuntu.
+# Install Ubuntu and base software.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential git vim wget flex supervisor && \
+  apt-get install -y build-essential git wget flex supervisor && \
   mkdir -p /var/log/supervisor && \
   rm -rf /var/lib/apt/lists/*
 
@@ -29,17 +29,16 @@ RUN \
   cp -r go/* /goroot/ && \
   mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
 
-# Add files.
-ADD root/.bashrc /root/.bashrc
-ADD root/.gitconfig /root/.gitconfig
-ADD root/.scripts /root/.scripts
-ADD root/start.sh /home/acm/go/src/start.sh
-ADD root/supervisord.conf /etc/supervisord.conf
-
 # Set environment variables for Golang.
 ENV GOROOT /goroot
 ENV GOPATH /home/acm/go
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+
+# Add files.
+ADD root/.bashrc /root/.bashrc
+ADD root/.gitconfig /root/.gitconfig
+ADD root/.scripts /root/.scripts
+ADD root/supervisord.conf /etc/supervisord.conf
 
 # Install MongoDB.
 RUN \
@@ -50,7 +49,7 @@ RUN \
   mkdir -p /home/acm/Data && \
   rm -rf /var/lib/apt/lists/*
 
-# Get OJ Source Code
+# Get OJ Source Code.
 RUN \
   mkdir -p $GOPATH/src/ProblemData && \
   mkdir -p $GOPATH/src/run && \
@@ -80,4 +79,3 @@ WORKDIR $GOPATH/src
 
 # Define default command.
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
-#CMD ["bash", "/home/acm/go/src/start.sh"]
