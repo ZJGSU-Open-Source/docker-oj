@@ -9,7 +9,7 @@ This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJ
 
 ### Installation
 
-1. Install [Docker](https://www.docker.com/).
+1. Install [Docker](https://docs.docker.com/installation/#installation).
 
 2. Download [automated build](https://registry.hub.docker.com/u/clarkzjw/docker-oj/) from public [Docker Hub Registry](https://registry.hub.docker.com/): `docker pull clarkzjw/docker-oj`
 
@@ -17,12 +17,8 @@ This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJ
    
 ### Usage
 
-    docker run -it --rm clarkzjw/docker-oj
+    docker run -it -p <host-ip>:8080 clarkzjw/docker-oj
 
 ### Known issues
 
-+ [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge) does not support x64 systems yet. Track the [issue](https://github.com/ZJGSU-Open-Source/RunServer/issues/4).Therefore OJ in container actually **cannot** work yet. 
-
-+ You have to specify the port maps when starting a container. GoOnlineJudge runs at 8080 port.
-
-+ [MongoDB](http://www.mongodb.org/) is already installed. But you have to run it manually in the container. The scripts can be found at [Gist](https://gist.github.com/JinweiClarkChao/476a18024135393889ae)
++ [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge)'s conponent [RunServer](https://github.com/ZJGSU-Open-Source/RunServer) does not support **x64** systems yet. Track this [issue](https://github.com/ZJGSU-Open-Source/RunServer/issues/4).Therefore OJ in container actually **can** run but **connot** judge submits yet. 
