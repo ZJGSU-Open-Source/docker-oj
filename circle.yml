@@ -1,0 +1,12 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - docker build -t="docker-oj" .
+
+test:
+  override:
+    - docker run -d -p 8080:8080 docker-oj; sleep 10
+    - curl --retry 10 --retry-delay 5 -v http://localhost:8080

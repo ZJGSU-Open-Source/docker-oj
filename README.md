@@ -1,6 +1,8 @@
 dockerfile-oj
 =============
 
+[![Circle CI](https://circleci.com/gh/ZJGSU-Open-Source/docker-oj.svg?style=svg)](https://circleci.com/gh/ZJGSU-Open-Source/docker-oj)
+
 This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge).
 
 [**Demo**](http://clarkzjw-oj.daoapp.io/) runs on [DaoCloud](https://www.daocloud.io/).
@@ -25,7 +27,7 @@ docker build -t="docker-oj" .
    
 ### Usage
 
-    docker run -it -p <host-ip>:8080 docker-oj
+    docker run -it -p <host-port>:8080 docker-oj
 
 ### Known issues
 
