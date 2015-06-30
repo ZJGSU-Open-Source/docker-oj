@@ -23,14 +23,14 @@ RUN \
 
 # Install Golang.
 RUN \
-  mkdir -p /goroot && \
+  mkdir -p /home/acm/goroot && \
   wget https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz && \
   tar xzf go1.4.2.linux-amd64.tar.gz && \
-  cp -r go/* /goroot/ && \
+  cp -r go/* /home/acm/goroot/ && \
   mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
 
 # Set environment variables for Golang.
-ENV GOROOT /goroot
+ENV GOROOT /home/acm/goroot
 ENV GOPATH /home/acm/go
 ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
@@ -53,7 +53,7 @@ RUN \
 RUN \
   mkdir -p $GOPATH/src/ProblemData && \
   mkdir -p $GOPATH/src/run && \
-  mkdir -p $GOPATJ/src/log && \
+  mkdir -p $GOPATH/src/log && \
   go get gopkg.in/mgo.v2 && \
   go get github.com/djimenez/iconv-go && \
   git clone https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git $GOPATH/src/GoOnlineJudge && \
@@ -63,7 +63,6 @@ RUN \
 
 # Build OJ
 RUN \
-  mkdir -p $GOPATH/src/GoOnlineJudge/log && \
   cd $GOPATH/src/restweb && \
   cd restweb && \
   go install && \
