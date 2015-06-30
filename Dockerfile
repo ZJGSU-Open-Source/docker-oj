@@ -2,7 +2,7 @@
 # GoOnlineJudge Dockerfile
 #
 # Github
-# https://github.com/JinweiClarkChao/dockerfile-oj
+# https://github.com/ZJGSU-Open-Source/docker-oj
 #
 # Docker Hub
 # https://registry.hub.docker.com/u/clarkzjw/docker-oj/
