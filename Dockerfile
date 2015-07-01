@@ -12,6 +12,11 @@
 FROM ubuntu:14.04
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
 
+# Set environment variables for Golang.
+ENV GOROOT /home/acm/goroot
+ENV GOPATH /home/acm/go
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+
 # Install Ubuntu and base software.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -28,11 +33,6 @@ RUN \
   tar xzf go1.4.2.linux-amd64.tar.gz && \
   cp -r go/* /home/acm/goroot/ && \
   mkdir -p /home/acm/go/src /home/acm/go/pkg /home/acm/go/bin
-
-# Set environment variables for Golang.
-ENV GOROOT /home/acm/goroot
-ENV GOPATH /home/acm/go
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Add files.
 ADD root/.bashrc /root/.bashrc
