@@ -12,11 +12,6 @@
 FROM ubuntu:14.04
 MAINTAINER clarkzjw <clarkzjw@gmail.com>
 
-# Set environment variables for Golang.
-ENV GOROOT /home/acm/goroot
-ENV GOPATH /home/acm/go
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
-
 # Install Ubuntu and base software.
 RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
@@ -25,6 +20,11 @@ RUN \
   apt-get install -y build-essential git wget flex supervisor && \
   mkdir -p /var/log/supervisor && \
   rm -rf /var/lib/apt/lists/*
+
+# Set environment variables for Golang.
+ENV GOROOT /home/acm/goroot
+ENV GOPATH /home/acm/go
+ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
 
 # Install Golang.
 RUN \
