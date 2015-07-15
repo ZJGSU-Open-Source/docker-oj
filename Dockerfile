@@ -32,7 +32,7 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential flex supervisor openjdk-7-jre && \
+  apt-get install -y build-essential flex supervisor openjdk-7-jdk && \
   mkdir -p /var/log/supervisor && \
   rm -rf /var/lib/apt/lists/*
 
