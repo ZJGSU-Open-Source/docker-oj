@@ -3,7 +3,7 @@ dockerfile-oj
 
 This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJGSU-Open-Source/GoOnlineJudge).
 
-[**Demo**](http://sakeven-oj.daoapp.io/) runs on [DaoCloud](https://www.daocloud.io/).
+[**Demo**](http://onlinejudge.daoapp.io/) runs on [DaoCloud](https://www.daocloud.io/).
 
 ### Installation
 
@@ -11,7 +11,7 @@ This repository contains **Dockerfile** of [GoOnlineJudge](https://github.com/ZJ
 
 2. Build 
    
-   `docker build -t goonlinejudge`
+   `docker build -t goonlinejudge .`
    
 ### Usage
 
