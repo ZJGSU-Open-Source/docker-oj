@@ -4,7 +4,6 @@
 # Github
 # https://github.com/ZJGSU-Open-Source/docker-oj
 #
-#
 
 # Pull base image.
 FROM google/golang
@@ -33,7 +32,7 @@ RUN \
   sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential flex supervisor && \
+  apt-get install -y build-essential flex supervisor openjdk-7-jre && \
   mkdir -p /var/log/supervisor && \
   rm -rf /var/lib/apt/lists/*
 
