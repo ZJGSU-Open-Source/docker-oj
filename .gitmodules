@@ -1,6 +1,3 @@
-[submodule "GoOnlineJudge"]
-        path = GoOnlineJudge
-        url = https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git
 [submodule "RunServer"]
 	path = RunServer
 	url = https://github.com/ZJGSU-Open-Source/RunServer.git
@@ -10,3 +7,6 @@
 [submodule "restweb"]
 	path = restweb
 	url = https://github.com/sakeven/restweb.git
+[submodule "GoOnlineJudge"]
+	path = GoOnlineJudge
+	url = https://github.com/ZJGSU-Open-Source/GoOnlineJudge.git
