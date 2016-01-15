@@ -9,10 +9,26 @@
 FROM google/golang
 MAINTAINER Sakeven "sakeven.jiang@daocloud.io"
 
+# Install Ubuntu and base software.
+RUN \
+  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
+  apt-get update && \
+  apt-get -y upgrade && \
+  apt-get install -y build-essential mongodb flex supervisor openjdk-7-jdk && \
+  mkdir -p /var/log/supervisor && \
+  rm -rf /var/lib/apt/lists/*
+
 # Set environment variables for Golang.
 
 ENV GOPATH /gopath/app
 ENV PATH $GOPATH/bin:$PATH
+ENV OJ_HOME $GOPATH/src
+ENV DATA_PATH $GOPATH/Data
+ENV LOG_PATH $GOPATH/src/log
+ENV RUN_PATH $GOPATH/src/run
+ENV JUDGE_HOST "http://127.0.0.1:8888"
+ENV MONGODB_PORT_27017_TCP_ADDR=127.0.0.1
+
 ENV OJ_HOME $GOPATH/src
 ADD . /gopath/app/src/
 
@@ -26,15 +42,6 @@ RUN \
 RUN \
   go get gopkg.in/mgo.v2 && \
   go get github.com/djimenez/iconv-go
-
-# Install Ubuntu and base software.
-RUN \
-  sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get -y upgrade && \
-  apt-get install -y build-essential flex supervisor openjdk-7-jdk && \
-  mkdir -p /var/log/supervisor && \
-  rm -rf /var/lib/apt/lists/*
 
 # Add files.
 ADD root/supervisord.conf /etc/supervisord.conf
@@ -60,3 +67,4 @@ RUN \
 
 # Define default command.
 CMD ["/usr/bin/supervisord","-c","/etc/supervisord.conf"]
+#CMD ["/bin/bash"]
