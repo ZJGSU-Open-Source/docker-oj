@@ -1,0 +1,65 @@
+version: '2'
+services:
+    goonlinejudge:
+        hostname: oj
+        image: clarkzjw/goonlinejudge
+        networks:
+            ojnet:
+                ipv4_address: 192.168.0.10
+        ports:
+            - "8080:8080"
+        restart: always
+        environment:
+            - MONGODB_PORT_27017_TCP_ADDR=mongodb
+            - JUDGE_HOST=http://192.168.0.30:8888
+        links:
+            - runserver
+            - mongodb
+        volumes:
+            - ./Data:/go/src/Data
+            - ./log:/go/src/log
+            - ./run:/go/src/run
+            - ./DBData:/data/db
+
+    mongodb:
+        hostname: mongodb
+        image: mongo
+        networks:
+            ojnet:
+                ipv4_address: 192.168.0.20
+        ports:
+            - "27017:27017"
+        restart: always
+        volumes:
+            - ./DBData:/data/db
+            - ./log:/go/src/log
+            - ./run:/go/src/run
+            - ./Data:/go/src/Data
+
+    runserver:
+        hostname: runserver
+        image: clarkzjw/runserver
+        environment:
+            - MONGODB_PORT_27017_TCP_ADDR=mongodb
+            - JUDGE_HOST=http://192.168.0.30:8888
+        networks:
+            ojnet:
+                ipv4_address: 192.168.0.30
+        ports:
+            - "8888:8888"
+        restart: always
+        links:
+            - mongodb
+        volumes:
+            - ./Data:/go/src/Data
+            - ./log:/go/src/log
+            - ./run:/go/src/run
+            - ./DBData:/data/db
+
+networks:
+    ojnet:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.0.0/24

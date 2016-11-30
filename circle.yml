@@ -1,0 +1,28 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  services:
+    - docker
+
+dependencies:
+  pre:
+    - pip install docker-compose
+  override:
+    - docker info
+    - docker-compose --version
+    - docker build --rm=false -t clarkzjw/restweb ./restweb
+    - docker build --rm=false -t clarkzjw/goonlinejudge ./goonlinejudge
+    - docker build --rm=false -t clarkzjw/runserver ./runserver
+
+test:
+  override:
+    - docker-compose -f docker-compose.yml up -d; sleep 10
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push clarkzjw/restweb
+      - docker push clarkzjw/goonlinejudge
+      - docker push clarkzjw/runserver
