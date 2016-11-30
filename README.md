@@ -6,9 +6,9 @@ The Next Generation of GoOnlineJudge inside Docker.
 
 This project is made up of several docker images.
 
-+ [golang](https://hub.docker.com/_/golang/) [![](https://images.microbadger.com/badges/version/golang.svg)](https://microbadger.com/images/golang "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/golang.svg)](https://microbadger.com/images/golang "Get your own image badge on microbadger.com")
++ [golang](https://hub.docker.com/_/golang/)   [![](https://images.microbadger.com/badges/version/golang.svg)](https://microbadger.com/images/golang "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/golang.svg)](https://microbadger.com/images/golang "Get your own image badge on microbadger.com")
 
-+ [mongo](https://hub.docker.com/_/mongo/) [![](https://images.microbadger.com/badges/version/mongo.svg)](https://microbadger.com/images/mongo "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mongo.svg)](https://microbadger.com/images/mongo "Get your own image badge on microbadger.com")
++ [mongo](https://hub.docker.com/_/mongo/)    [![](https://images.microbadger.com/badges/version/mongo.svg)](https://microbadger.com/images/mongo "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/mongo.svg)](https://microbadger.com/images/mongo "Get your own image badge on microbadger.com")
 
 + [restweb](https://hub.docker.com/r/clarkzjw/restweb/) [![](https://images.microbadger.com/badges/version/clarkzjw/restweb.svg)](https://microbadger.com/images/clarkzjw/restweb "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/image/clarkzjw/restweb.svg)](https://microbadger.com/images/clarkzjw/restweb "Get your own image badge on microbadger.com")
 
@@ -20,13 +20,13 @@ As you may know, traditional docker image have a rather big size to download. We
 
 ## Contents
 
-+ Prerequisites
++ [Prerequisites](https://github.com/ZJGSU-Open-Source/docker-oj#prerequisites)
 
-+ Quick Start
++ [Quick Start](https://github.com/ZJGSU-Open-Source/docker-oj#quick-start)
 
-+ Contributions
++ [Contributions](https://github.com/ZJGSU-Open-Source/docker-oj#contributions)
 
-+ License
++ [License](https://github.com/ZJGSU-Open-Source/docker-oj#license)
 
 ### Prerequisites
 
