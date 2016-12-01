@@ -5,8 +5,6 @@ machine:
     - docker
 
 dependencies:
-  pre:
-    - pip install docker-compose
   override:
     - docker info
     - docker-compose --version
@@ -16,7 +14,7 @@ dependencies:
 
 test:
   override:
-    - docker-compose -f docker-compose.yml up -d; sleep 10
+    - sleep 10
 
 deployment:
   hub:

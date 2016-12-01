@@ -1,4 +1,4 @@
-# dockeroj-ng [![CircleCI](https://circleci.com/bb/clarkzjw/dockeroj-ng.svg?style=svg)](https://circleci.com/bb/clarkzjw/dockeroj-ng)
+# dockeroj-ng [![CircleCI](https://circleci.com/gh/ZJGSU-Open-Source/docker-oj.svg?style=svg)](https://circleci.com/gh/ZJGSU-Open-Source/docker-oj)
 
 The Next Generation of GoOnlineJudge inside Docker.
 
